@@ -36,8 +36,17 @@ namespace NaturalSort
 
     public class NaturalSortComparer<T> : IComparer<string>, IDisposable
     {
-        private Dictionary<string, string[]> table = new Dictionary<string, string[]>();
+        /// <summary>
+        /// Regular expression used to identify which part of the string may be a number (decimal).
+        /// </summary>
         private const string RegexString = @"([0-9]+(\.[0-9]+)?([Ee][+-]?[0-9]+)?)";
+        
+        /// <summary>
+        /// Type of comparaison used to compare strings between them
+        /// </summary>
+        private const StringComparison StringComparison = StringComparison.Ordinal;
+
+        private Dictionary<string, string[]> table = new Dictionary<string, string[]>();
         private readonly bool isAscending;
 
         public NaturalSortComparer(bool isAscendingOrder = true)
@@ -96,10 +105,10 @@ namespace NaturalSort
             decimal x, y;
 
             if (!decimal.TryParse(left, NumberStyles.Any, CultureInfo.InvariantCulture, out x))
-                return String.Compare(left, right, StringComparison.Ordinal);
+                return String.Compare(left, right, StringComparison);
 
             if (!decimal.TryParse(right, NumberStyles.Any, CultureInfo.InvariantCulture, out y))
-                return String.Compare(left, right, StringComparison.Ordinal);
+                return String.Compare(left, right, StringComparison);
 
             return x.CompareTo(y);
         }

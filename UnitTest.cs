@@ -15,26 +15,28 @@ namespace NaturalSort
                 {
                     "0.12",
                     "12",
-                    "0.012",
-                    "10",
                     "Potato",
-                    "1.2",
-                    "1",
+                    "a0.012",
+                    "10",
+                    "potato",
+                    "b1.2",
+                    "a1",
                     "1.2E-4",
                     "0.0012",                
                 };
 
             list.Sort(new NaturalSortComparer<string>());
 
-            Assert.AreEqual(list[0], "1.2E-4");
-            Assert.AreEqual(list[1], "0.0012");
-            Assert.AreEqual(list[2], "0.012");
-            Assert.AreEqual(list[3], "0.12");
-            Assert.AreEqual(list[4], "1");
-            Assert.AreEqual(list[5], "1.2");
-            Assert.AreEqual(list[6], "10");
-            Assert.AreEqual(list[7], "12");
-            Assert.AreEqual(list[8], "Potato");
+            Assert.AreEqual("1.2E-4", list[0]);
+            Assert.AreEqual("0.0012", list[1]);
+            Assert.AreEqual("0.12", list[2]);
+            Assert.AreEqual("10", list[3]);
+            Assert.AreEqual("12", list[4]);
+            Assert.AreEqual("Potato", list[5]);
+            Assert.AreEqual("a0.012", list[6]);
+            Assert.AreEqual("a1", list[7]);
+            Assert.AreEqual("b1.2", list[8]);
+            Assert.AreEqual("potato", list[9]);
         }
 
         [TestMethod]
@@ -49,10 +51,10 @@ namespace NaturalSort
 
             list = list.OrderByNatural("Value").ToList();
 
-            Assert.AreEqual(list[0].Value, "0.01");
-            Assert.AreEqual(list[1].Value, "1");
-            Assert.AreEqual(list[2].Value, "10");
-            Assert.AreEqual(list[3].Value, "12");
+            Assert.AreEqual("0.01", list[0].Value);
+            Assert.AreEqual("1", list[0].Value);
+            Assert.AreEqual("10", list[0].Value);
+            Assert.AreEqual("12", list[0].Value);
         }
     }
 }
